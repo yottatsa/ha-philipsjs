@@ -1,0 +1,50 @@
+{
+	"menulanguage": "English",
+	"name": "Philips",
+	"country": "United Kingdom",
+	"serialnumber_encrypted": "K2kseVsmQFgkd15gKkJ+atfWNuT4/QF3FjIP5UsUmFU=",
+	"softwareversion_encrypted": "K2kseVsmQFgkd15gKkJ+aghB4/qebZgaim858ef1rgWEH0HtxbTDOOJvtWU7NZpE",
+	"model_encrypted": "K2kseVsmQFgkd15gKkJ+ahjyFTgbp0FUxVi0oxeWmxQ=",
+	"deviceid_encrypted": "K2kseVsmQFgkd15gKkJ+ao8RtiVlPyycoxO6OCqBSNE=",
+	"nettvversion": "4.6.0",
+	"epgsource": "broadcast",
+	"api_version": {
+		"Major": 6,
+		"Minor": 1,
+		"Patch": 0
+	},
+	"featuring": {
+		"jsonfeatures": {
+			"recordings": [
+				"List",
+				"Schedule",
+				"Manage"
+			],
+			"ambilight": [
+				"LoungeLight"
+			],
+			"textentry": [
+				"context_based",
+				"initial_string_available"
+			],
+			"inputkey": [
+				"key",
+				"unicode"
+			],
+			"pointer": [
+				"context_based"
+			],
+			"activities": [
+				"browser"
+			]
+		},
+		"systemfeatures": {
+			"tvtype": "consumer",
+			"content": [
+				"dmr"
+			],
+			"pairing_type": "none",
+			"os_type": "Linux"
+		}
+	}
+}

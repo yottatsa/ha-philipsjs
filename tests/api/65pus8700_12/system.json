@@ -1,0 +1,52 @@
+{
+   "nettvversion" : "5.2.0",
+   "epgsource" : "ip",
+   "menulanguage" : "German",
+   "deviceid_encrypted" : "q6Tjl9HOpRMEqHn37o9fmjiqWOfzhcbVBqw6E4R8Bz0=\n",
+   "country" : "Switzerland",
+   "featuring" : {
+      "jsonfeatures" : {
+         "activities" : [
+            "intent"
+         ],
+         "applications" : [
+            "TV_Apps",
+            "TV_Games",
+            "TV_Settings"
+         ],
+         "inputkey" : [
+            "key"
+         ],
+         "ambilight" : [
+            "LoungeLight",
+            "Ambilight"
+         ],
+         "textentry" : [
+            "context_based",
+            "initial_string_available"
+         ],
+         "pointer" : [
+            "not_available"
+         ]
+      },
+      "systemfeatures" : {
+         "pairing_type" : "digest_auth_pairing",
+         "content" : [
+            "dmr",
+            "dms_tad"
+         ],
+         "secured_transport" : "true",
+         "tvtype" : "consumer",
+         "tvsearch" : "intent"
+      }
+   },
+   "name" : "65PUS8700/12",
+   "serialnumber_encrypted" : "r6JNErTrk01mgMdYKDrcZhO2h8wxGWbU3/oCU1YabU4=\n",
+   "softwareversion_encrypted" : "64nDPvAaqHDiAVZbDPMDvBovcPmyT/USuWhpBxNi1vE=\n",
+   "api_version" : {
+      "Patch" : 0,
+      "Major" : 5,
+      "Minor" : 2
+   },
+   "model_encrypted" : "gHBfHO0/ZcUFiP/AhZXqohTJArRKu74yN9NoyUSqlEk=\n"
+}

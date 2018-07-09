@@ -1,0 +1,42 @@
+{
+    "tv":
+    {
+        "name": "Watch TV"
+    },
+    "satellite":
+    {
+        "name": "Watch satellite"
+    },
+    "hdmi1":
+    {
+        "name": "HDMI 1"
+    },
+    "hdmi2":
+    {
+        "name": "HDMI 2"
+    },
+    "hdmi3":
+    {
+        "name": "HDMI 3"
+    },
+    "hdmiside":
+    {
+        "name": "HDMI side"
+    },
+    "ext1":
+    {
+        "name": "EXT 1"
+    },
+    "ext2":
+    {
+        "name": "EXT 2"
+    },
+    "ypbpr":
+    {
+        "name": "Y Pb Pr"
+    },
+    "vga":
+    {
+        "name": "VGA"
+    }
+}

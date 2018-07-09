@@ -1,0 +1,11 @@
+coveralls==1.2.0
+flake8-docstrings==1.0.3
+flake8==3.5
+mypy==0.590
+pydocstyle==1.1.1
+pylint==1.9.2
+pytest-cov==2.5.1
+pytest-sugar==0.9.1
+pytest==3.6.3
+requests_mock==1.5
+black

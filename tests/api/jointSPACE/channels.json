@@ -1,0 +1,22 @@
+{
+    "fingerprint-1":
+    {
+        "preset": "1",
+        "name": "Flower"
+    },
+    "fingerprint-2":
+    {
+        "preset": "2",
+        "name": "Moving Colourbar"
+    },
+    "fingerprint-3":
+    {
+        "preset": "12.3",
+        "name": "Irdeto scrambled"
+    },
+    "fingerprint-4":
+    {
+        "preset": "4",
+        "name": "Codec 16:9 scrambled"
+    }
+}
