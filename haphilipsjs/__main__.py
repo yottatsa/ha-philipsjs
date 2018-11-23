@@ -5,7 +5,7 @@ import logging
 import json
 from typing import Any, Dict, List
 
-from haphilipsjs import PhilipsTV
+from haphilipsjs import PhilipsTV, AMBILIGHT_STYLES
 
 logger = logging.getLogger(__name__)
 
@@ -28,7 +28,7 @@ def discover() -> List[str]:
         netdis.scan()
         results = []  # type: List[str]
         for dev in netdis.discover():
-            if dev in ('philips_tv', 'DLNA'):
+            if dev in ('dlna_dmr'):
                 info = netdis.get_info(dev)
                 logger.info("Discovered %s %s", dev, info)
                 results.extend([dev['host'] for dev in info])
@@ -46,9 +46,17 @@ def main(devices: List[str]) -> None:
         try:
             tv = DebugPhilipsTV(dev)
             tv.update()
-            tv._session = None
-            logger.info("State: %s", json.dumps(tv.__dict__))
-        except Exception as e:
+            tv.update()
+            tv.getAmbilight()
+            logger.info("Sources: %s", [tv.getSourceName(s) for s in tv.sources])
+            logger.info("Current Source: %s", tv.getSourceName(tv.source_id))
+            logger.info("Ambilight: %s", tv.ambilight)
+            logger.info(
+                "Supported Ambilight Styles: %s",
+                tv.ambilight_supportedstyles.keys() - AMBILIGHT_STYLES.keys()
+            )
+            logger.debug("Requests: %s", json.dumps(tv.requests))
+        except Exception:
             logger.exception("Failed")
 
 
