@@ -46,6 +46,7 @@ def main(devices: List[str]) -> None:
         try:
             tv = DebugPhilipsTV(dev)
             tv.update()
+            tv._session = None
             logger.info("State: %s", json.dumps(tv.__dict__))
         except Exception as e:
             logger.exception("Failed")

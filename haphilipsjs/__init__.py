@@ -9,6 +9,7 @@ except ImportError:
 
 LOG = logging.getLogger(__name__)
 BASE_URL = "http://{0}:1925/{1}/{2}"
+NEW_BASE_URL = "https://{0}:1926/{1}/{2}"
 TIMEOUT = 5.0
 CHANNELS_TIMEOUT = 30.0
 CONNFAILCOUNT = 5
@@ -16,10 +17,15 @@ DEFAULT_API_VERSION = 1
 
 
 class PhilipsTV(object):
-    def __init__(self, host, api_version=None):
+    def __init__(self, host, api_version=None, user=None, password=None):
         # type: (str, Union[int, str, None]) -> None
         self._host = host  # type: str
+        self._user = user
+        self._password = password
         self._connfail = 0
+        self._session = requests.Session()
+        if self._user:
+            self._session.mount('https://', HTTPAdapter(pool_connections=1))
         if api_version:
             self.api_version = int(api_version)  # type: int
         else:
@@ -37,8 +43,15 @@ class PhilipsTV(object):
         self.source_id = None
         self.channels = None  # type: Optional[Dict[str, Dict[str, str]]]
         self.channel_id = None
+        self.ambilight = None
         self.ignoreList = []
         self.getSystem()
+
+    def _formatUrl(self, path):
+        if self._user:
+            return NEW_BASE_URL.format(self._host, self.api_version, path)
+        else:
+            return BASE_URL.format(self._host, self.api_version, path)
 
     def _getReq(self, path, timeout=TIMEOUT):
         # type: (str, float) -> Optional[Dict[str, Any]]
@@ -47,8 +60,10 @@ class PhilipsTV(object):
                 LOG.debug("Connfail: %i", self._connfail)
                 self._connfail -= 1
                 return None
-            url = BASE_URL.format(self._host, self.api_version, path)
-            resp = requests.get(url, timeout=timeout)
+            resp = self._session.get(
+                self._formatUrl(path),
+                timeout=timeout
+            )
             if resp.status_code != 200:
                 return None
             self.on = True
@@ -65,8 +80,8 @@ class PhilipsTV(object):
                 LOG.debug("Connfail: %i", self._connfail)
                 self._connfail -= 1
                 return False
-            resp = requests.post(
-                BASE_URL.format(self._host, self.api_version, path),
+            resp = self._session.post(
+                self._formatUrl(path),
                 json=data,
                 timeout=TIMEOUT,
             )
@@ -248,3 +263,19 @@ class PhilipsTV(object):
                 .get("activities", [])
             ):
                 self._postReq("activities/browser", {"url": url})
+
+    def getAmbilight(self):
+        power = self._getReq("ambilight/power")
+        conf = self._getReq("ambilight/currentconfiguration")
+        if power and conf:
+            self.ambilight = {
+                "power": power["power"] == "On",
+                "currentconfiguration": conf,
+            }
+        else:
+            self.ambilight = {}
+
+    def setAmbilightPower(self, state):
+        if self.ambilight and self.ambilight["power"] != state:
+            self._postReq("ambilight/power", {"power": state and "On" or "Off"})
+            self.ambilight_power["power"] = state
